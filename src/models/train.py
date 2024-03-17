@@ -6,7 +6,7 @@ from tqdm import tqdm
 from src.data.data_set import ShakespeareDataset
 
 
-def train_model(train_txt, valid_txt, best_model_path = "best_shakespeare_model.pth"):
+def train_model(train_txt, valid_txt, best_model_path="best_shakespeare_model.pth"):
     device = "cuda" if torch.cuda.is_available() else "cpu"
     tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
     model = GPT2LMHeadModel.from_pretrained("gpt2").to(device)
@@ -15,8 +15,8 @@ def train_model(train_txt, valid_txt, best_model_path = "best_shakespeare_model.
     train_dataset = ShakespeareDataset(train_txt, tokenizer)
     valid_dataset = ShakespeareDataset(valid_txt, tokenizer)
 
-    train_loader = DataLoader(train_dataset, batch_size=2, shuffle=True)
-    valid_loader = DataLoader(valid_dataset, batch_size=2, shuffle=False)
+    train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+    valid_loader = DataLoader(valid_dataset, batch_size=32, shuffle=False)
 
     num_epochs = int(input("Number of epochs: "))
     learning_rate = 1e-4
@@ -29,14 +29,11 @@ def train_model(train_txt, valid_txt, best_model_path = "best_shakespeare_model.
         total_loss = 0.0
 
         for batch in tqdm(train_loader):
-            print("Batch: ", batch)
             optimizer.zero_grad()
             input_ids = batch.to(device)
             labels = input_ids.clone()
-            print("Labels: ", labels)
             outputs = model(input_ids, labels=labels)
             loss = outputs.loss
-            print("Loss: ", loss)
             loss.backward()
             optimizer.step()
             total_loss += loss.item()

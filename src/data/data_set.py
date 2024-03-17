@@ -3,7 +3,7 @@ from torch.utils.data import Dataset
 
 
 class ShakespeareDataset(Dataset):
-    def __init__(self, file_path, tokenizer, block_size=1):
+    def __init__(self, file_path, tokenizer, block_size=128):
         self.tokenizer = tokenizer
         self.block_size = block_size
         self.examples = []
