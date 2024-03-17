@@ -16,7 +16,7 @@ The project consists of the following components:
 
     ```bash
     git clone https://github.com/HovhannesAbgaryan/ShakespeareTextGenerator
-    cd shakespeare-text-generation
+    cd ShakespeareTextGenerator
     ```
 
 2. Install dependencies:
