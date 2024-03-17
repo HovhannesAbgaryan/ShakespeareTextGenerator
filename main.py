@@ -26,7 +26,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Script to preprocess data, train model, and generate text.")
-    parser.add_argument("--data_file", type=str, default="data/shakespeare_data/raw/Shakespeare_data_small.csv",
+    parser.add_argument("--data_file", type=str, default="data/shakespeare_data/raw/Shakespeare_data.csv",
                         help="Path to the raw data file.")
     parser.add_argument("--model_save_path", type=str, default="models/best_shakespeare_model.pth",
                         help="Path to save the trained model.")
